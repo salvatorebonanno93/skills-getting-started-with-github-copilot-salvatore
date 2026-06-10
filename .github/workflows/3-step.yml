@@ -76,7 +76,10 @@ jobs:
           TARGET_FILE: src/static/app.js
         with:
           script: |
-            const changedFiles = process.env.CHANGED_FILES.split(' ');
+            const changedFiles = process.env.CHANGED_FILES
+              .split(/\s+/)
+              .map((f) => f.trim())
+              .filter(Boolean);
             const targetFile = process.env.TARGET_FILE;
             if (!changedFiles.includes(targetFile)) {
               core.setFailed(`${targetFile} was not modified`);
@@ -91,7 +94,10 @@ jobs:
           TARGET_FILE: src/static/styles.css
         with:
           script: |
-            const changedFiles = process.env.CHANGED_FILES.split(' ');
+            const changedFiles = process.env.CHANGED_FILES
+              .split(/\s+/)
+              .map((f) => f.trim())
+              .filter(Boolean);
             const targetFile = process.env.TARGET_FILE;
             if (!changedFiles.includes(targetFile)) {
               core.setFailed(`${targetFile} was not modified`);
