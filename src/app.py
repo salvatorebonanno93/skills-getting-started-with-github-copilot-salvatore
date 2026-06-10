@@ -55,7 +55,7 @@ activities = {
         "description": "Explore drawing, painting, and mixed media art projects",
         "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
         "max_participants": 15,
-        "participants": []
+        "participants": ["maria@mergington.edu", "sara@mergington.edu"]
     },
     "Drama Club": {
         "description": "Practice acting, prepare plays, and perform for the school",
@@ -104,17 +104,3 @@ def signup_for_activity(activity_name: str, email: str):
     # Add student
     activity["participants"].append(email)
     return {"message": f"Signed up {email} for {activity_name}"}
-
-
-@app.delete("/activities/{activity_name}/participants/{email}")
-def remove_participant(activity_name: str, email: str):
-    """Remove a student from an activity"""
-    if activity_name not in activities:
-        raise HTTPException(status_code=404, detail="Activity not found")
-
-    activity = activities[activity_name]
-    if email not in activity["participants"]:
-        raise HTTPException(status_code=404, detail="Participant not found")
-
-    activity["participants"].remove(email)
-    return {"message": f"Removed {email} from {activity_name}"}
