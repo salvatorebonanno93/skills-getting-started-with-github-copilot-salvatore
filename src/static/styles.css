@@ -178,7 +178,7 @@ button:hover {
 
 .error {
   background-color: #ffebee;
-  color: #c62828;
+    color: #c62828;
   border: 1px solid #ef9a9a;
 }
 
@@ -194,7 +194,10 @@ button:hover {
 
 footer {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 40px;
   padding: 20px;
   color: #666;
 }
+
+
+
